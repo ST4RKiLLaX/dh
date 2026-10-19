@@ -1,6 +1,15 @@
-// Predefined list of small prime numbers for demonstration
+// Curated list of primes for demonstration. Kept to a few hundred so that
+// primitive-root lookup stays effectively instant.
 const primeNumbers = [
-    23n, 29n, 31n, 37n, 41n, 43n, 47n, 53n, 59n, 61n, 67n, 71n
+    23n, 29n, 31n, 37n, 41n, 43n, 47n, 53n, 59n, 61n, 67n, 71n,
+    73n, 79n, 83n, 89n, 97n, 101n, 103n, 107n, 109n, 113n,
+    127n, 131n, 137n, 139n, 149n, 151n, 157n, 163n, 167n, 173n,
+    179n, 181n, 191n, 193n, 197n, 199n, 211n, 223n, 227n, 229n,
+    233n, 239n, 241n, 251n, 257n, 263n, 269n, 271n, 277n, 281n,
+    283n, 293n, 307n, 311n, 313n, 317n, 331n, 337n, 347n, 349n,
+    353n, 359n, 367n, 373n, 379n, 383n, 389n, 397n, 401n, 409n,
+    419n, 421n, 431n, 433n, 439n, 443n, 449n, 457n, 461n, 463n,
+    467n, 479n, 487n, 491n, 499n
 ];
 
 // Elements
@@ -23,6 +32,30 @@ primeSelect.addEventListener('change', updatePrimitiveRoots);
 
 // Initialize primitive roots
 updatePrimitiveRoots();
+
+// Dice buttons: fill a field with a random valid value
+function pickRandomSelectOption(select) {
+    if (select.options.length === 0) return;
+    const idx = Math.floor(Math.random() * select.options.length);
+    select.selectedIndex = idx;
+    // Let any listeners (e.g. prime -> root refresh) react
+    select.dispatchEvent(new Event('change'));
+}
+
+function pickRandomPrivateKey(input) {
+    const p = BigInt(primeSelect.value);
+    if (p <= 2n) return;
+    input.value = randomBigInt(1n, p - 2n).toString();
+}
+
+document.getElementById('primeDice')
+    .addEventListener('click', () => pickRandomSelectOption(primeSelect));
+document.getElementById('rootDice')
+    .addEventListener('click', () => pickRandomSelectOption(primitiveRootSelect));
+document.getElementById('aliceDice')
+    .addEventListener('click', () => pickRandomPrivateKey(alicePrivateKeyInput));
+document.getElementById('bobDice')
+    .addEventListener('click', () => pickRandomPrivateKey(bobPrivateKeyInput));
 
 function updatePrimitiveRoots() {
     const p = BigInt(primeSelect.value);
@@ -64,7 +97,7 @@ function findAllPrimitiveRoots(p) {
             }
         }
         if (!flag) roots.push(g);
-        if (roots.length >= 10) break; // Limit the number of roots to 10 for practicality
+        if (roots.length >= 30) break; // Cap the dropdown so it stays usable
     }
     return roots;
 }

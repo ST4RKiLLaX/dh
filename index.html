@@ -25,20 +25,36 @@
             <div class="input-row">
                 <label for="prime">Prime number (p):</label>
                 <select id="prime"></select>
+                <button type="button" class="dice" id="primeDice"
+                        aria-label="Pick a random prime" title="Pick a random prime">
+                    <i class="fas fa-dice"></i>
+                </button>
                 <span class="note">Choose a prime number</span>
             </div>
             <div class="input-row">
                 <label for="primitiveRoot">Primitive root (g):</label>
                 <select id="primitiveRoot"></select>
+                <button type="button" class="dice" id="rootDice"
+                        aria-label="Pick a random primitive root" title="Pick a random primitive root">
+                    <i class="fas fa-dice"></i>
+                </button>
                 <span class="note">Select a primitive root modulo p</span>
             </div>
             <div class="input-row">
                 <label for="alicePrivateKey">Alice's private key (a):</label>
                 <input type="number" id="alicePrivateKey" min="1" placeholder="Random if left empty">
+                <button type="button" class="dice" id="aliceDice"
+                        aria-label="Pick a random private key for Alice" title="Pick a random private key for Alice">
+                    <i class="fas fa-dice"></i>
+                </button>
             </div>
             <div class="input-row">
                 <label for="bobPrivateKey">Bob's private key (b):</label>
                 <input type="number" id="bobPrivateKey" min="1" placeholder="Random if left empty">
+                <button type="button" class="dice" id="bobDice"
+                        aria-label="Pick a random private key for Bob" title="Pick a random private key for Bob">
+                    <i class="fas fa-dice"></i>
+                </button>
             </div>
             <button class="compute" onclick="diffieHellman()">Compute Shared Secret</button>
         </div>
