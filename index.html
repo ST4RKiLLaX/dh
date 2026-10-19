@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Diffie-Hellman Key Exchange Demonstration</title>
+    <!-- Include FontAwesome CSS with Correct Integrity Hash -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Interactive Diffie-Hellman Key Exchange</h1>
+        <p class="subtitle">
+            Walk through the five canonical steps of a Diffie-Hellman exchange:
+            agree, generate, calculate, exchange, calculate.
+        </p>
+
+        <div class="setup">
+            <div class="input-row">
+                <label for="prime">Prime number (p):</label>
+                <select id="prime"></select>
+                <span class="note">Choose a prime number</span>
+            </div>
+            <div class="input-row">
+                <label for="primitiveRoot">Primitive root (g):</label>
+                <select id="primitiveRoot"></select>
+                <span class="note">Select a primitive root modulo p</span>
+            </div>
+            <div class="input-row">
+                <label for="alicePrivateKey">Alice's private key (a):</label>
+                <input type="number" id="alicePrivateKey" min="1" placeholder="Random if left empty">
+            </div>
+            <div class="input-row">
+                <label for="bobPrivateKey">Bob's private key (b):</label>
+                <input type="number" id="bobPrivateKey" min="1" placeholder="Random if left empty">
+            </div>
+            <button class="compute" onclick="diffieHellman()">Compute Shared Secret</button>
+        </div>
+
+        <div id="output"></div>
+    </div>
+</body>
+</html>
